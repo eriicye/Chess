@@ -9,7 +9,8 @@ set(SFML_DIR
 
 find_package(SFML 3 REQUIRED COMPONENTS Graphics Window System)
 
-add_executable(Chess src/main/main.cpp)
+add_executable(Chess src/main/main.cpp
+        src/constants/Constants.h)
 
 target_link_libraries(Chess PRIVATE
         SFML::Graphics
