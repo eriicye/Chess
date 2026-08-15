@@ -7,10 +7,10 @@
 
 struct Constants {
 public:
-    static constexpr int WIDTH = 800;
-    static constexpr int HEIGHT = 600;
+    static constexpr int WIDTH = 1300;
+    static constexpr int HEIGHT = 975;
 
-    static constexpr char TITLE = *"Chess";
+    static constexpr char *TITLE = "Chess";
 
     static constexpr int FPS = 60;
 };
