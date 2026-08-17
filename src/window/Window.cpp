@@ -5,18 +5,26 @@
 #include "Window.h"
 #include "../constants/Constants.h"
 
-Window::Window() {
-    window.create(sf::VideoMode({Constants::WIDTH, Constants::HEIGHT}), Constants::TITLE, sf::Style::Close);
+#include "../board/Board.h"
 
-    window.setFramerateLimit(Constants::FPS);
+Board board;
+
+Window::Window() {
+    windowSetup();
 }
 
-void Window::render() {
+void Window::windowSetup() {
+    window.create(sf::VideoMode({Constants::WIDTH, Constants::HEIGHT}), Constants::TITLE, sf::Style::Close);
+    window.setFramerateLimit(Constants::FPS);
+    window.setPosition({Constants::WINDOW_X, Constants::WINDOW_Y});
+}
 
+void Window::render(sf::RenderWindow &window) {
+    board.render(window);
 }
 
 void Window::tick() {
-
+    board.tick();
 }
 
 void Window::run() {
@@ -29,7 +37,7 @@ void Window::run() {
         window.clear();
 
         tick();
-        render();
+        render(window);
 
         window.display();
     }
