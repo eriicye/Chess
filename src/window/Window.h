@@ -14,8 +14,10 @@ public:
     void run();
 
 private:
-    void render();
+    void render(sf::RenderWindow &window);
     void tick();
+
+    void windowSetup();
 
 private:
     sf::RenderWindow window;
