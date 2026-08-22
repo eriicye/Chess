@@ -6,8 +6,10 @@
 #include "../constants/Constants.h"
 
 #include "../board/Board.h"
+#include "../board/Pieces.h"
 
 Board board;
+Pieces pieces;
 
 Window::Window() {
     windowSetup();
@@ -21,10 +23,12 @@ void Window::windowSetup() {
 
 void Window::render(sf::RenderWindow &window) {
     board.render(window);
+    pieces.render(window);
 }
 
 void Window::tick() {
     board.tick();
+    pieces.tick();
 }
 
 void Window::run() {
