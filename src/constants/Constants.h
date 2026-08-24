@@ -27,6 +27,12 @@ public:
     // colours
     inline static const sf::Color LIGHT_SQUARE{240, 217, 181};
     inline static const sf::Color DARK_SQUARE{181, 136, 99};
+
+    // pieces
+    static constexpr int PIECE_WIDTH = 333;
+    static constexpr int PIECE_HEIGHT = 333;
+
+    static constexpr float SCALE = 0.41f;
 };
 
 #endif //CHESS_CONSTANTS_H

@@ -5,26 +5,38 @@
 #ifndef CHESS_PIECES_H
 #define CHESS_PIECES_H
 
+#include "SFML/Graphics.hpp"
+#include "iostream"
+
 class Pieces {
 public:
     Pieces();
 
     void tick();
-    void render();
+    void render(sf::RenderWindow &window);
 
-public:
-    int board[8][8] {
-        {-5, -2, -3, -9, -10, -3, -2, -5},
-        {-1, -1, -1, -1, -1, -1, -1, -1},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0},
-        {1, 1, 1, 1, 1, 1, 1, 1},
-        {5, 2, 3, 9, 10, 3, 2, 5},
-    };
 
 private:
+    void loadPieces();
+    void drawPieces(sf::RenderWindow &window);
+
+
+private:
+    int board[8][8] {
+        {-4, -3, -2, -1, -10, -2, -3, -4},
+        {-5, -5, -5, -5, -5, -5, -5, -5},
+        {8, 8, 8, 8, 8, 8, 8, 8},
+        {8, 8, 8, 8, 8, 8, 8, 8},
+        {8, 8, 8, 8, 8, 8, 8, 8},
+        {8, 8, 8, 8, 8, 8, 8, 8},
+        {5, 5, 5, 5, 5, 5, 5, 5},
+        {4, 3, 2, 1, 10, 2, 3, 4},
+    };
+
+    sf::Texture piecesTexture;
+
+    std::vector<sf::Sprite> whitePieces;
+    std::vector<sf::Sprite> blackPieces;
 
 };
 
