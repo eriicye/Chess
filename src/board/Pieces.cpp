@@ -32,7 +32,7 @@ void Pieces::loadPieces() {
 void Pieces::drawPieces(sf::RenderWindow &window) {
     for (int row = 0; row < 8; row++) {
         for (int col = 0; col < 8; col++) {
-            int piece = board[row][col];
+            int piece = board[col][row];
 
             // white
             if (piece > 0 && piece != 8) {
