@@ -71,10 +71,23 @@ void Pieces::drawPieces(sf::RenderWindow &window) {
 void Pieces::movePiece(sf::RenderWindow &window) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) || sf::Mouse::isButtonPressed(sf::Mouse::Button::Right)) {
-        square_x = std::ceil(mousePos.x / Constants::SIZE_X);
-        square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
+    square_x = std::ceil(mousePos.x / Constants::SIZE_X);
+    square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
+
+    // TODO: Fix out of bounds error
+    // TODO: FIx the moving pieces error
+
+    if (square_x != old_x && square_y != old_y && old_x != -1000 && old_y != -1000) {
+        board[square_y][square_x] = board[old_y][old_x];
+        board[old_y][old_x] = 8;
+
+        std::cout << "Square X: " << square_x << " " << "Square Y: " << square_y << "\n";
+        std::cout << "Old X: " << old_x << " " << "Old Y: " << old_y << "\n";
+        std::cout << "\n";
     }
+
+    old_x = square_x;
+    old_y = square_y;
 }
 
 void Pieces::render(sf::RenderWindow &window) {
@@ -82,5 +95,14 @@ void Pieces::render(sf::RenderWindow &window) {
 }
 
 void Pieces::tick(sf::RenderWindow &window) {
-    movePiece(window);
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (clicked == false) {
+            movePiece(window);
+            clicked = true;
+        }
+    }
+
+    else {
+        clicked = false;
+    }
 }

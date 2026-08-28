@@ -25,25 +25,27 @@ private:
 
     void movePiece(sf::RenderWindow &window);
 
-
 private:
     int board[8][8] {
-        {-4, -3, -2, -1, -10, -2, -3, -4},
-        {-5, -5, -5, -5, -5, -5, -5, -5},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {5, 5, 5, 5, 5, 5, 5, 5},
-        {4, 3, 2, 1, 10, 2, 3, 4},
+        {-4, -3, -2, -1, -10, -2, -3, -4}, // 0
+        {-5, -5, -5, -5, -5, -5, -5, -5}, // 1
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 2
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 3
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 4
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 5
+        {5, 5, 5, 5, 5, 5, 5, 5}, // 6
+        {4, 3, 2, 1, 10, 2, 3, 4}, // 7
     };
+
+    int old_x = square_x;
+    int old_y = square_y;
+
+    bool clicked = false;
 
     sf::Texture piecesTexture;
 
     std::vector<sf::Sprite> whitePieces;
     std::vector<sf::Sprite> blackPieces;
-
-    sf::Mouse::Button mouse;
 
 };
 

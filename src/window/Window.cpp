@@ -32,6 +32,11 @@ void Window::tick(sf::RenderWindow &window) {
 
 void Window::run() {
     while (window.isOpen()) {
+        float currentTime = clock.restart().asSeconds();
+        float frames = 1.0f / currentTime;
+
+        window.setTitle(std::string(Constants::TITLE) + " | " + std::to_string(frames));
+
         while (const std::optional event = window.pollEvent()) {
             if (event->is<sf::Event::Closed>())
                 window.close();
