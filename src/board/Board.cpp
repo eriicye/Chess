@@ -7,9 +7,12 @@
 
 #include "Board.h"
 #include "../constants/Constants.h"
+#include "Pieces.h"
 
 Board::Board() {
     square.setSize({Constants::SIZE_X, Constants::SIZE_Y});
+
+    initHighlightedSquare();
 }
 
 void Board::drawSquare(sf::RenderWindow &window, float x, float y, sf::Color colour) {
@@ -34,10 +37,27 @@ void Board::drawBoard(sf::RenderWindow &window) {
     }
 }
 
+void Board::initHighlightedSquare() {
+    square_outline.setOutlineThickness(5);
+    square_outline.setOutlineColor(sf::Color::Yellow);
+    square_outline.setFillColor(sf::Color::Transparent);
+    square_outline.setSize(sf::Vector2f(Constants::SIZE_X, Constants::SIZE_Y));
+}
+
+void Board::highlightSquare(sf::RenderWindow &window) {
+    if (pieces.square_x < 8 && pieces.square_y <= 8) {
+        square_outline.setPosition(sf::Vector2f((float) pieces.square_x * Constants::SIZE_X, (float) pieces.square_y * Constants::SIZE_Y));
+
+        window.draw(square_outline);
+    }
+
+}
+
 void Board::tick() {
 
 }
 
 void Board::render(sf::RenderWindow &window) {
     drawBoard(window);
+    highlightSquare(window);
 }

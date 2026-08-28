@@ -12,13 +12,18 @@ class Pieces {
 public:
     Pieces();
 
-    void tick();
+    void tick(sf::RenderWindow &window);
     void render(sf::RenderWindow &window);
 
+public:
+    int square_x = -1000;
+    int square_y = -1000;
 
 private:
     void loadPieces();
     void drawPieces(sf::RenderWindow &window);
+
+    void movePiece(sf::RenderWindow &window);
 
 
 private:
@@ -38,7 +43,11 @@ private:
     std::vector<sf::Sprite> whitePieces;
     std::vector<sf::Sprite> blackPieces;
 
+    sf::Mouse::Button mouse;
+
 };
+
+extern Pieces pieces;
 
 
 #endif //CHESS_PIECES_H

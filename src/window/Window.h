@@ -15,7 +15,7 @@ public:
 
 private:
     void render(sf::RenderWindow &window);
-    void tick();
+    void tick(sf::RenderWindow &window);
 
     void windowSetup();
 

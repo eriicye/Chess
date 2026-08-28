@@ -9,7 +9,6 @@
 #include "../board/Pieces.h"
 
 Board board;
-Pieces pieces;
 
 Window::Window() {
     windowSetup();
@@ -26,9 +25,9 @@ void Window::render(sf::RenderWindow &window) {
     pieces.render(window);
 }
 
-void Window::tick() {
+void Window::tick(sf::RenderWindow &window) {
     board.tick();
-    pieces.tick();
+    pieces.tick(window);
 }
 
 void Window::run() {
@@ -40,19 +39,9 @@ void Window::run() {
 
         window.clear();
 
-        tick();
+        tick(window);
         render(window);
 
         window.display();
     }
 }
-
-
-
-
-
-
-
-
-
-
