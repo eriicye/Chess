@@ -12,26 +12,35 @@ class Pieces {
 public:
     Pieces();
 
-    void tick();
+    void tick(sf::RenderWindow &window);
     void render(sf::RenderWindow &window);
 
+public:
+    int square_x = -1000;
+    int square_y = -1000;
 
 private:
     void loadPieces();
     void drawPieces(sf::RenderWindow &window);
 
+    void movePiece(sf::RenderWindow &window);
 
 private:
     int board[8][8] {
-        {-4, -3, -2, -1, -10, -2, -3, -4},
-        {-5, -5, -5, -5, -5, -5, -5, -5},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {8, 8, 8, 8, 8, 8, 8, 8},
-        {5, 5, 5, 5, 5, 5, 5, 5},
-        {4, 3, 2, 1, 10, 2, 3, 4},
+        {-4, -3, -2, -1, -10, -2, -3, -4}, // 0
+        {-5, -5, -5, -5, -5, -5, -5, -5}, // 1
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 2
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 3
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 4
+        {8, 8, 8, 8, 8, 8, 8, 8}, // 5
+        {5, 5, 5, 5, 5, 5, 5, 5}, // 6
+        {4, 3, 2, 1, 10, 2, 3, 4}, // 7
     };
+
+    int old_x = square_x;
+    int old_y = square_y;
+
+    bool clicked = false;
 
     sf::Texture piecesTexture;
 
@@ -39,6 +48,8 @@ private:
     std::vector<sf::Sprite> blackPieces;
 
 };
+
+extern Pieces pieces;
 
 
 #endif //CHESS_PIECES_H

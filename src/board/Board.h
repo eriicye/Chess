@@ -18,8 +18,12 @@ private:
     void drawBoard(sf::RenderWindow &window);
     void drawSquare(sf::RenderWindow &window, float x, float y, sf::Color colour);
 
+    void initHighlightedSquare();
+    void highlightSquare(sf::RenderWindow &window);
+
 private:
     sf::RectangleShape square;
+    sf::RectangleShape square_outline;
 };
 
 

@@ -5,6 +5,8 @@
 #include "Pieces.h"
 #include "../constants/Constants.h"
 
+Pieces pieces;
+
 Pieces::Pieces() {
     loadPieces();
 }
@@ -66,10 +68,41 @@ void Pieces::drawPieces(sf::RenderWindow &window) {
     }
 }
 
+void Pieces::movePiece(sf::RenderWindow &window) {
+    sf::Vector2i mousePos = sf::Mouse::getPosition(window);
+
+    square_x = std::ceil(mousePos.x / Constants::SIZE_X);
+    square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
+
+    if (square_x != old_x || square_y != old_y) {
+        if (old_x != -1000 && old_y != -1000) {
+            if (board[square_y][square_x] == 8) {
+                board[square_y][square_x] = board[old_y][old_x];
+                board[old_y][old_x] = 8;
+
+                square_x = -1000;
+                square_y = -1000;
+            }
+        }
+    }
+
+    old_x = square_x;
+    old_y = square_y;
+}
+
 void Pieces::render(sf::RenderWindow &window) {
     drawPieces(window);
 }
 
-void Pieces::tick() {
+void Pieces::tick(sf::RenderWindow &window) {
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left)) {
+        if (clicked == false) {
+            movePiece(window);
+            clicked = true;
+        }
+    }
 
+    else {
+        clicked = false;
+    }
 }
