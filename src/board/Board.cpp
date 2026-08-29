@@ -38,7 +38,7 @@ void Board::drawBoard(sf::RenderWindow &window) {
 }
 
 void Board::initHighlightedSquare() {
-    square_outline.setOutlineThickness(5);
+    square_outline.setOutlineThickness(4);
     square_outline.setOutlineColor(sf::Color::Yellow);
     square_outline.setFillColor(sf::Color::Transparent);
     square_outline.setSize(sf::Vector2f(Constants::SIZE_X, Constants::SIZE_Y));
@@ -47,7 +47,6 @@ void Board::initHighlightedSquare() {
 void Board::highlightSquare(sf::RenderWindow &window) {
     if (pieces.square_x < 8 && pieces.square_y <= 8) {
         square_outline.setPosition(sf::Vector2f((float) pieces.square_x * Constants::SIZE_X, (float) pieces.square_y * Constants::SIZE_Y));
-
         window.draw(square_outline);
     }
 

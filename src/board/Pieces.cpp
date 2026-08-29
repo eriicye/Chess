@@ -74,16 +74,16 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     square_x = std::ceil(mousePos.x / Constants::SIZE_X);
     square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
 
-    // TODO: Fix out of bounds error
-    // TODO: FIx the moving pieces error
+    if (square_x != old_x || square_y != old_y) {
+        if (old_x != -1000 && old_y != -1000) {
+            if (board[square_y][square_x] == 8) {
+                board[square_y][square_x] = board[old_y][old_x];
+                board[old_y][old_x] = 8;
 
-    if (square_x != old_x && square_y != old_y && old_x != -1000 && old_y != -1000) {
-        board[square_y][square_x] = board[old_y][old_x];
-        board[old_y][old_x] = 8;
-
-        std::cout << "Square X: " << square_x << " " << "Square Y: " << square_y << "\n";
-        std::cout << "Old X: " << old_x << " " << "Old Y: " << old_y << "\n";
-        std::cout << "\n";
+                square_x = -1000;
+                square_y = -1000;
+            }
+        }
     }
 
     old_x = square_x;
