@@ -16,16 +16,6 @@ public:
     void render(sf::RenderWindow &window);
 
 public:
-    int square_x = -1000;
-    int square_y = -1000;
-
-private:
-    void loadPieces();
-    void drawPieces(sf::RenderWindow &window);
-
-    void movePiece(sf::RenderWindow &window);
-
-private:
     int board[8][8] {
         {-4, -3, -2, -1, -10, -2, -3, -4}, // 0
         {-5, -5, -5, -5, -5, -5, -5, -5}, // 1
@@ -37,8 +27,20 @@ private:
         {4, 3, 2, 1, 10, 2, 3, 4}, // 7
     };
 
+    int square_x = -1000;
+    int square_y = -1000;
+
     int old_x = square_x;
     int old_y = square_y;
+
+
+private:
+    void loadPieces();
+    void drawPieces(sf::RenderWindow &window);
+
+    void movePiece(sf::RenderWindow &window);
+
+private:
 
     bool clicked = false;
 

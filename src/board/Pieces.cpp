@@ -4,8 +4,10 @@
 
 #include "Pieces.h"
 #include "../constants/Constants.h"
+#include "Pawn.h"
 
 Pieces pieces;
+Pawn pawn;
 
 Pieces::Pieces() {
     loadPieces();
@@ -74,17 +76,40 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     square_x = std::ceil(mousePos.x / Constants::SIZE_X);
     square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
 
-    if (square_x != old_x || square_y != old_y) {
-        if (old_x != -1000 && old_y != -1000) {
-            if (board[square_y][square_x] == 8) {
-                board[square_y][square_x] = board[old_y][old_x];
-                board[old_y][old_x] = 8;
+    // pawn
+    if (board[old_y][old_x] == 5 || board[old_y][old_x] == -5) {
+        if (square_x != old_x || square_y != old_y) {
+            if (old_x != -1000 && old_y != -1000) {
+                if (board[square_y][square_x] == 8) {
+                    if (pawn.checkIfOverOneSquare() == true) {
 
-                square_x = -1000;
-                square_y = -1000;
+                    }
+
+                    else {
+                        board[square_y][square_x] = board[old_y][old_x];
+                        board[old_y][old_x] = 8;
+
+                        square_x = -1000;
+                        square_y = -1000;
+                    }
+                }
             }
         }
+
+        // pawn.pawnLogic();
     }
+
+    // if (square_x != old_x || square_y != old_y) {
+    //     if (old_x != -1000 && old_y != -1000) {
+    //         if (board[square_y][square_x] == 8) {
+    //             board[square_y][square_x] = board[old_y][old_x];
+    //             board[old_y][old_x] = 8;
+    //
+    //             square_x = -1000;
+    //             square_y = -1000;
+    //         }
+    //     }
+    // }
 
     old_x = square_x;
     old_y = square_y;
