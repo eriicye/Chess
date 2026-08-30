@@ -10,7 +10,12 @@ class Pawn {
 public:
     Pawn();
 
-    bool checkIfOverOneSquare();
+    bool validMove();
+
+private:
+    bool overOneSquare();
+    bool canMoveTwoSquares();
+    bool differentColumn();
 
 };
 

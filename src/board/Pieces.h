@@ -15,6 +15,8 @@ public:
     void tick(sf::RenderWindow &window);
     void render(sf::RenderWindow &window);
 
+    void debugging() const;
+
 public:
     int board[8][8] {
         {-4, -3, -2, -1, -10, -2, -3, -4}, // 0

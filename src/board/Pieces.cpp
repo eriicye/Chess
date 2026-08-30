@@ -70,6 +70,12 @@ void Pieces::drawPieces(sf::RenderWindow &window) {
     }
 }
 
+void Pieces::debugging() const {
+    std::cout << "Square X: " << square_x << " | " << "Square Y: " << square_y << "\n";
+    std::cout << "Old X: " << old_x << " | " << "Old Y: " << old_y << "\n";
+    std::cout << "\n";
+}
+
 void Pieces::movePiece(sf::RenderWindow &window) {
     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
@@ -81,10 +87,12 @@ void Pieces::movePiece(sf::RenderWindow &window) {
         if (square_x != old_x || square_y != old_y) {
             if (old_x != -1000 && old_y != -1000) {
                 if (board[square_y][square_x] == 8) {
-                    if (pawn.checkIfOverOneSquare() == true) {
+                    // invalid moves
+                    if (pawn.validMove() == false) {
 
                     }
 
+                    // valid moves
                     else {
                         board[square_y][square_x] = board[old_y][old_x];
                         board[old_y][old_x] = 8;
