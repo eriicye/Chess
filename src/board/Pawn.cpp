@@ -16,6 +16,10 @@ bool Pawn::validMove() {
         return false;
     }
 
+    if (moveBackwards() == true) {
+        return false;
+    }
+
     return true;
 }
 
@@ -31,6 +35,24 @@ bool Pawn::overOneSquare() {
 bool Pawn::canMoveTwoSquares() {
     if (pieces.old_y == 6 || pieces.old_y == 1) {
         if (std::abs(pieces.square_y - pieces.old_y)  < 3) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool Pawn::moveBackwards() {
+    pieces.debugging();
+
+    if (pieces.board[pieces.old_y][pieces.old_x] == 5) {
+        if (pieces.old_y < pieces.square_y) {
+            return true;
+        }
+    }
+
+    else if (pieces.board[pieces.old_y][pieces.old_x] == -5) {
+        if (pieces.old_y > pieces.square_y) {
             return true;
         }
     }

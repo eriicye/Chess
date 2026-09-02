@@ -16,6 +16,7 @@ private:
     bool overOneSquare();
     bool canMoveTwoSquares();
     bool differentColumn();
+    bool moveBackwards();
 
 };
 
