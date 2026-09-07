@@ -82,25 +82,26 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     square_x = std::ceil(mousePos.x / Constants::SIZE_X);
     square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
 
+    debugging();
+
     // pawn
     if (board[old_y][old_x] == 5 || board[old_y][old_x] == -5) {
         if (square_x != old_x || square_y != old_y) {
             if (old_x != -1000 && old_y != -1000) {
-                if (board[square_y][square_x] == 8) {
-                    // invalid moves
-                    if (pawn.validMove() == false) {
+                // invalid moves
+                if (pawn.validMove() == false) {
 
-                    }
-
-                    // valid moves
-                    else {
-                        board[square_y][square_x] = board[old_y][old_x];
-                        board[old_y][old_x] = 8;
-
-                        square_x = -1000;
-                        square_y = -1000;
-                    }
                 }
+
+                // valid moves
+                else {
+                    board[square_y][square_x] = board[old_y][old_x];
+                    board[old_y][old_x] = 8;
+
+                    square_x = -1000;
+                    square_y = -1000;
+                }
+
             }
         }
 

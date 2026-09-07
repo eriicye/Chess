@@ -20,18 +20,44 @@ bool Pawn::validMove() {
         return false;
     }
 
+    if (canCapture() == true) {
+        return true;
+    }
+
+    if (pieceInFront() == true) {
+        return false;
+    }
+
     return true;
 }
 
 bool Pawn::overOneSquare() {
-    if (abs(pieces.square_y - pieces.old_y) > 1) {
+    if (std::abs(pieces.square_y - pieces.old_y) > 1) {
         return true;
     }
 
     return false;
 }
 
-// unused
+bool Pawn::pieceInFront() {
+    if (std::abs(pieces.square_y - pieces.old_y) >= 1 && pieces.board[pieces.square_y][pieces.square_x] != 8) {
+        return true;
+    }
+
+    return false;
+}
+
+bool Pawn::canCapture() {
+    if (pieces.board[pieces.square_y][pieces.square_x] == -5) {
+        if (std::abs(pieces.square_x - pieces.old_x) == 1 && std::abs(pieces.square_y - pieces.old_y) == 1) {
+            std::cout << "Pawn capture" << "\n";
+            return true;
+        }
+    }
+
+    return false;
+}
+
 bool Pawn::canMoveTwoSquares() {
     if (pieces.old_y == 6 || pieces.old_y == 1) {
         if (std::abs(pieces.square_y - pieces.old_y)  < 3) {
@@ -43,8 +69,6 @@ bool Pawn::canMoveTwoSquares() {
 }
 
 bool Pawn::moveBackwards() {
-    pieces.debugging();
-
     if (pieces.board[pieces.old_y][pieces.old_x] == 5) {
         if (pieces.old_y < pieces.square_y) {
             return true;

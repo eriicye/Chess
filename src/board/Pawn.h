@@ -17,6 +17,8 @@ private:
     bool canMoveTwoSquares();
     bool differentColumn();
     bool moveBackwards();
+    bool canCapture();
+    bool pieceInFront();
 
 };
 
