@@ -8,6 +8,10 @@
 Pawn::Pawn() = default;
 
 bool Pawn::validMove() {
+    if (canCapture() == true) {
+        return true;
+    }
+
     if (overOneSquare() == true && canMoveTwoSquares() == false) {
         return false;
     }
@@ -18,10 +22,6 @@ bool Pawn::validMove() {
 
     if (moveBackwards() == true) {
         return false;
-    }
-
-    if (canCapture() == true) {
-        return true;
     }
 
     if (pieceInFront() == true) {
@@ -48,9 +48,8 @@ bool Pawn::pieceInFront() {
 }
 
 bool Pawn::canCapture() {
-    if (pieces.board[pieces.square_y][pieces.square_x] == -5) {
+    if (pieces.board[pieces.square_y][pieces.square_x] != 8) {
         if (std::abs(pieces.square_x - pieces.old_x) == 1 && std::abs(pieces.square_y - pieces.old_y) == 1) {
-            std::cout << "Pawn capture" << "\n";
             return true;
         }
     }

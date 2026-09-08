@@ -82,7 +82,7 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     square_x = std::ceil(mousePos.x / Constants::SIZE_X);
     square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
 
-    debugging();
+    // debugging();
 
     // pawn
     if (board[old_y][old_x] == 5 || board[old_y][old_x] == -5) {
