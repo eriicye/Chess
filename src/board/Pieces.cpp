@@ -5,9 +5,11 @@
 #include "Pieces.h"
 #include "../constants/Constants.h"
 #include "Pawn.h"
+#include "Knight.h"
 
 Pieces pieces;
 Pawn pawn;
+Knight knight;
 
 Pieces::Pieces() {
     loadPieces();
@@ -70,6 +72,7 @@ void Pieces::drawPieces(sf::RenderWindow &window) {
     }
 }
 
+// remove after finished
 void Pieces::debugging() const {
     std::cout << "Square X: " << square_x << " | " << "Square Y: " << square_y << "\n";
     std::cout << "Old X: " << old_x << " | " << "Old Y: " << old_y << "\n";
@@ -85,43 +88,51 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     // debugging();
 
     // pawn
-    if (board[old_y][old_x] == 5 || board[old_y][old_x] == -5) {
-        if (square_x != old_x || square_y != old_y) {
-            if (old_x != -1000 && old_y != -1000) {
-                // invalid moves
-                if (pawn.validMove() == false) {
+    if (move(5, -5)) {
+        if (pawn.validMove() == false) {
 
-                }
-
-                // valid moves
-                else {
-                    board[square_y][square_x] = board[old_y][old_x];
-                    board[old_y][old_x] = 8;
-
-                    square_x = -1000;
-                    square_y = -1000;
-                }
-
-            }
         }
 
-        // pawn.pawnLogic();
+        // valid moves
+        else {
+            validMove();
+        }
     }
 
-    // if (square_x != old_x || square_y != old_y) {
-    //     if (old_x != -1000 && old_y != -1000) {
-    //         if (board[square_y][square_x] == 8) {
-    //             board[square_y][square_x] = board[old_y][old_x];
-    //             board[old_y][old_x] = 8;
-    //
-    //             square_x = -1000;
-    //             square_y = -1000;
-    //         }
-    //     }
-    // }
+    // knight
+    if (move(3, -3)) {
+        if (knight.validMove() == false) {
+
+        }
+
+        else {
+            validMove();
+        }
+    }
+
 
     old_x = square_x;
     old_y = square_y;
+}
+
+void Pieces::validMove() {
+    board[square_y][square_x] = board[old_y][old_x];
+    board[old_y][old_x] = 8;
+
+    square_x = -1000;
+    square_y = -1000;
+}
+
+bool Pieces::move(int white, int black) {
+    if (board[old_y][old_x] == white || board[old_y][old_x] == black) {
+        if (square_x != old_x || square_y != old_y) {
+            if (old_x != -1000 && old_y != -1000) {
+                return true;
+            }
+        }
+    }
+
+    return false;
 }
 
 void Pieces::render(sf::RenderWindow &window) {

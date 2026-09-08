@@ -41,6 +41,9 @@ private:
     void drawPieces(sf::RenderWindow &window);
 
     void movePiece(sf::RenderWindow &window);
+    void validMove();
+
+    bool move(int white, int black);
 
 private:
 
