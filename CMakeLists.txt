@@ -16,7 +16,9 @@ add_executable(Chess src/main/main.cpp
         src/board/Board.cpp
         src/board/Board.h
         src/board/Pieces.cpp
-        src/board/Pieces.h)
+        src/board/Pieces.h
+        src/board/Pawn.cpp
+        src/board/Pawn.h)
 
 target_link_libraries(Chess PRIVATE
         SFML::Graphics

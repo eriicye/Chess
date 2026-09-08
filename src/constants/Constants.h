@@ -13,7 +13,7 @@ public:
     static constexpr int WIDTH = 1400;
     static constexpr int HEIGHT = 1024;
 
-    static constexpr int WINDOW_X = 265;
+    static constexpr int WINDOW_X = 850; // 265
     static constexpr int WINDOW_Y = 25;
 
     static constexpr char *TITLE = "Chess";
