@@ -85,7 +85,7 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     square_x = std::ceil(mousePos.x / Constants::SIZE_X);
     square_y = std::ceil(mousePos.y / Constants::SIZE_Y);
 
-    // debugging();
+    debugging();
 
     // pawn
     if (move(5, -5)) {
