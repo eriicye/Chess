@@ -6,10 +6,12 @@
 #include "../constants/Constants.h"
 #include "Pawn.h"
 #include "Knight.h"
+#include "Bishop.h"
 
 Pieces pieces;
 Pawn pawn;
 Knight knight;
+Bishop bishop;
 
 Pieces::Pieces() {
     loadPieces();
@@ -102,6 +104,16 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     // knight
     if (move(3, -3)) {
         if (knight.validMove() == false) {
+
+        }
+
+        else {
+            validMove();
+        }
+    }
+
+    if (move(2, -2)) {
+        if (bishop.validMove() == false) {
 
         }
 
