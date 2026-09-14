@@ -5,7 +5,8 @@
 #ifndef CHESS_BISHOP_H
 #define CHESS_BISHOP_H
 
-#include <iostream>
+#include "Pieces.h"
+#include <vector>
 
 class Bishop {
 public:
@@ -14,9 +15,10 @@ public:
     bool validMove();
 
 private:
-    bool diagonallyMoving();
+    void checkAllValidMoves();
 
-    bool pieceBlocked(int amount_x, int amount_y);
+private:
+    std::vector<std::pair<int, int>> valid_moves;
 };
 
 

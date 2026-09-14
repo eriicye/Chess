@@ -4,27 +4,17 @@
 
 #include "Bishop.h"
 #include "Pieces.h"
+#include "../constants/Constants.h"
+
+#include "SFML/Graphics.hpp"
 
 Bishop::Bishop() = default;
 
 bool Bishop::validMove() {
-    if (diagonallyMoving() == true) {
-        return true;
-    }
+    checkAllValidMoves();
 
-    return false;
-}
-
-bool Bishop::pieceBlocked(int amount_x, int amount_y) {
-    int temp_square_x = pieces.square_x;
-    int temp_square_y = pieces.square_y;
-
-    while (temp_square_x != pieces.old_x && temp_square_y != pieces.old_y) {
-        temp_square_x += amount_x;
-        temp_square_y += amount_y;
-
-        if (pieces.board[pieces.old_y][pieces.old_x] > 0 && pieces.board[temp_square_y][temp_square_x] > 0 ||
-            pieces.board[pieces.old_y][pieces.old_x] < 0 && pieces.board[temp_square_y][temp_square_x] < 0) {
+    for (int i = 0; i < valid_moves.size(); i++) {
+        if (pieces.square_x == valid_moves[i].first && pieces.square_y == valid_moves[i].second) {
             return true;
         }
     }
@@ -32,40 +22,26 @@ bool Bishop::pieceBlocked(int amount_x, int amount_y) {
     return false;
 }
 
-bool Bishop::diagonallyMoving() {
-    // move left
-    if (pieces.square_x < pieces.old_x) {
-        // move left down
-        if (pieces.square_y > pieces.old_y) {
-            if (pieceBlocked(-1, 1) == true) {
-                return false;
-            }
+void Bishop::checkAllValidMoves() {
+    int temp_old_y = pieces.old_y;
+    int temp_old_x = pieces.old_x;
+
+    valid_moves.clear();
+    // top right
+    while (pieces.board[temp_old_y - 1][temp_old_x + 1] == 8) {
+
+        if (temp_old_x + 1 < 8 && temp_old_y - 1 < 8) {
+            temp_old_x++;
+            temp_old_y--;
         }
 
-        // move left up
-        else {
-            if (pieceBlocked(-1, -1) == true) {
-                return false;
-            }
-        }
-    }
+        else break;
 
-    // move right
-    else {
-        // move right down
-        if (pieces.square_y > pieces.old_y) {
-            if (pieceBlocked(1, -1) == true) {
-                return false;
-            }
-        }
 
-        // move right up
-        else {
-            if (pieceBlocked(-1, 1) == true) {
-                return false;
-            }
+        valid_moves.emplace_back(temp_old_x, temp_old_y);
+
+        if (pieces.board[temp_old_y][temp_old_x] < 0) {
+            break;
         }
     }
-
-    return true;
 }
