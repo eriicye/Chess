@@ -23,20 +23,20 @@ bool Bishop::validMove() {
 }
 
 void Bishop::checkAllValidMoves() {
-    int temp_old_y = pieces.old_y;
-    int temp_old_x = pieces.old_x;
+    resetTemp();
 
     valid_moves.clear();
+
     // top right
     while (pieces.board[temp_old_y - 1][temp_old_x + 1] == 8) {
 
         if (temp_old_x + 1 < 8 && temp_old_y - 1 < 8) {
-            temp_old_x++;
-            temp_old_y--;
+            updateTempValues(1, -1);
         }
 
         else break;
 
+        addToValidMoves();
 
         valid_moves.emplace_back(temp_old_x, temp_old_y);
 
@@ -44,4 +44,69 @@ void Bishop::checkAllValidMoves() {
             break;
         }
     }
+
+    resetTemp();
+    // top left
+    while (pieces.board[temp_old_y - 1][temp_old_x - 1] == 8) {
+
+        if (temp_old_x - 1 <= 8 && temp_old_y - 1 <= 8) {
+            updateTempValues(-1, -1);
+        }
+
+        else break;
+
+        addToValidMoves();
+
+        if (pieces.board[temp_old_y][temp_old_x] < 0) {
+            break;
+        }
+    }
+
+    resetTemp();
+    // bottom right
+    while (pieces.board[temp_old_y + 1][temp_old_x + 1] == 8) {
+
+        if (temp_old_x + 1 <= 8 && temp_old_y + 1 <= 8) {
+            updateTempValues(1, 1);
+        }
+
+        else break;
+
+        addToValidMoves();
+
+        if (pieces.board[temp_old_y][temp_old_x] < 0) {
+            break;
+        }
+    }
+
+    resetTemp();
+    // bottom left
+    while (pieces.board[temp_old_y + 1][temp_old_x - 1] == 8) {
+
+        if (temp_old_x - 1 <= 8 && temp_old_y + 1 <= 8) {
+            updateTempValues(-1, 1);
+        }
+
+        else break;
+
+        addToValidMoves();
+
+        if (pieces.board[temp_old_y][temp_old_x] < 0) {
+            break;
+        }
+    }
+}
+
+void Bishop::resetTemp() {
+    temp_old_y = pieces.old_y;
+    temp_old_x = pieces.old_x;
+}
+
+void Bishop::updateTempValues(int xAmount, int yAmount) {
+    temp_old_x += xAmount;
+    temp_old_y += yAmount;
+}
+
+void Bishop::addToValidMoves() {
+    valid_moves.emplace_back(temp_old_x, temp_old_y);
 }

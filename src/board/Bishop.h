@@ -17,8 +17,15 @@ public:
 private:
     void checkAllValidMoves();
 
+    void resetTemp();
+    void updateTempValues(int xAmount, int yAmount);
+    void addToValidMoves();
+
 private:
     std::vector<std::pair<int, int>> valid_moves;
+
+    int temp_old_y = pieces.old_y;
+    int temp_old_x = pieces.old_x;
 };
 
 
