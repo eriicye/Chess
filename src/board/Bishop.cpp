@@ -41,17 +41,29 @@ void Bishop::checkAllValidMoves() {
 void Bishop::checkDifferentDirections(int x, int y) {
     resetTemp();
 
-    while (pieces.board[temp_old_y + y][temp_old_x + x] == 8) {
-        if (temp_old_x + x <= 8 && temp_old_y + y <= 8) {
-            updateTempValues(x, y);
+    // white
+    if (pieces.board[pieces.old_y][pieces.old_x] > 0) {
+        while (pieces.board[temp_old_y + y][temp_old_x + x] == 8 || pieces.board[temp_old_y + y][temp_old_x + x] < 0) {
+            if (temp_old_x + x <= 8 && temp_old_y + y <= 8) {
+                updateTempValues(x, y);
+            }
+
+            else break;
+
+            addToValidMoves();
         }
+    }
 
-        else break;
+    // black
+    else {
+        while (pieces.board[temp_old_y + y][temp_old_x + x] == 8 || pieces.board[temp_old_y + y][temp_old_x + x] > 0) {
+            if (temp_old_x + x <= 8 && temp_old_y + y <= 8) {
+                updateTempValues(x, y);
+            }
 
-        addToValidMoves();
+            else break;
 
-        if (pieces.board[temp_old_y][temp_old_x] < 0) {
-            break;
+            addToValidMoves();
         }
     }
 }
