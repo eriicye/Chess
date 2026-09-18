@@ -20,6 +20,7 @@ private:
     void resetTemp();
     void updateTempValues(int xAmount, int yAmount);
     void addToValidMoves();
+    void checkDifferentDirections(int x, int y);
 
 private:
     std::vector<std::pair<int, int>> valid_moves;

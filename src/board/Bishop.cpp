@@ -23,68 +23,27 @@ bool Bishop::validMove() {
 }
 
 void Bishop::checkAllValidMoves() {
-    resetTemp();
-
     valid_moves.clear();
 
     // top right
-    while (pieces.board[temp_old_y - 1][temp_old_x + 1] == 8) {
+    checkDifferentDirections(1, -1);
 
-        if (temp_old_x + 1 < 8 && temp_old_y - 1 < 8) {
-            updateTempValues(1, -1);
-        }
-
-        else break;
-
-        addToValidMoves();
-
-        valid_moves.emplace_back(temp_old_x, temp_old_y);
-
-        if (pieces.board[temp_old_y][temp_old_x] < 0) {
-            break;
-        }
-    }
-
-    resetTemp();
     // top left
-    while (pieces.board[temp_old_y - 1][temp_old_x - 1] == 8) {
+    checkDifferentDirections(-1, -1);
 
-        if (temp_old_x - 1 <= 8 && temp_old_y - 1 <= 8) {
-            updateTempValues(-1, -1);
-        }
-
-        else break;
-
-        addToValidMoves();
-
-        if (pieces.board[temp_old_y][temp_old_x] < 0) {
-            break;
-        }
-    }
-
-    resetTemp();
     // bottom right
-    while (pieces.board[temp_old_y + 1][temp_old_x + 1] == 8) {
+    checkDifferentDirections(1, 1);
 
-        if (temp_old_x + 1 <= 8 && temp_old_y + 1 <= 8) {
-            updateTempValues(1, 1);
-        }
-
-        else break;
-
-        addToValidMoves();
-
-        if (pieces.board[temp_old_y][temp_old_x] < 0) {
-            break;
-        }
-    }
-
-    resetTemp();
     // bottom left
-    while (pieces.board[temp_old_y + 1][temp_old_x - 1] == 8) {
+    checkDifferentDirections(-1, 1);
+}
 
-        if (temp_old_x - 1 <= 8 && temp_old_y + 1 <= 8) {
-            updateTempValues(-1, 1);
+void Bishop::checkDifferentDirections(int x, int y) {
+    resetTemp();
+
+    while (pieces.board[temp_old_y + y][temp_old_x + x] == 8) {
+        if (temp_old_x + x <= 8 && temp_old_y + y <= 8) {
+            updateTempValues(x, y);
         }
 
         else break;
