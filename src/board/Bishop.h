@@ -27,6 +27,8 @@ private:
 
     int temp_old_y = pieces.old_y;
     int temp_old_x = pieces.old_x;
+
+    int white = true;
 };
 
 
