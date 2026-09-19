@@ -8,6 +8,10 @@
 Pawn::Pawn() = default;
 
 bool Pawn::validMove() {
+    if (moveBackwards() == true) {
+        return false;
+    }
+
     if (canCapture() == true) {
         return true;
     }
@@ -17,10 +21,6 @@ bool Pawn::validMove() {
     }
 
     if (differentColumn() == true) {
-        return false;
-    }
-
-    if (moveBackwards() == true) {
         return false;
     }
 
