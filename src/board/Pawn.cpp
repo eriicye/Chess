@@ -8,6 +8,14 @@
 Pawn::Pawn() = default;
 
 bool Pawn::validMove() {
+    if (isOwnPiece() == true) {
+        return false;
+    }
+
+    if (moveBackwards() == true) {
+        return false;
+    }
+
     if (canCapture() == true) {
         return true;
     }
@@ -20,15 +28,29 @@ bool Pawn::validMove() {
         return false;
     }
 
-    if (moveBackwards() == true) {
-        return false;
-    }
-
     if (pieceInFront() == true) {
         return false;
     }
 
     return true;
+}
+
+bool Pawn::isOwnPiece() {
+    // white
+    if (pieces.board[pieces.old_y][pieces.old_x] > 0) {
+        if (pieces.board[pieces.square_y][pieces.square_x] != 8 && pieces.board[pieces.square_y][pieces.square_x] > 0) {
+            return true;
+        }
+    }
+
+    // black
+    else {
+        if (pieces.board[pieces.square_y][pieces.square_x] != 8 && pieces.board[pieces.square_y][pieces.square_x] < 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 bool Pawn::overOneSquare() {
@@ -90,6 +112,3 @@ bool Pawn::differentColumn() {
 
     return false;
 }
-
-
-
