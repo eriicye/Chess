@@ -7,11 +7,13 @@
 #include "Pawn.h"
 #include "Knight.h"
 #include "Bishop.h"
+#include "Rook.h"
 
 Pieces pieces;
 Pawn pawn;
 Knight knight;
 Bishop bishop;
+Rook rook;
 
 Pieces::Pieces() {
     loadPieces();
@@ -112,6 +114,7 @@ void Pieces::movePiece(sf::RenderWindow &window) {
         }
     }
 
+    // bishop
     if (move(2, -2)) {
         if (bishop.validMove() == false) {
 
@@ -120,10 +123,17 @@ void Pieces::movePiece(sf::RenderWindow &window) {
         else {
             validMove();
         }
-
-
     }
 
+    if (move(4, -4)) {
+        if (rook.validMove() == false) {
+
+        }
+
+        else {
+            validMove();
+        }
+    }
 
     old_x = square_x;
     old_y = square_y;
