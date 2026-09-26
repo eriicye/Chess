@@ -19,6 +19,7 @@ private:
     bool moveBackwards();
     bool canCapture();
     bool pieceInFront();
+    bool isOwnPiece();
 
 };
 

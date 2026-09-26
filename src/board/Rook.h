@@ -1,16 +1,16 @@
 //
-// Created by Eric on 10/09/2026.
+// Created by Eric on 21/09/2026.
 //
 
-#ifndef CHESS_BISHOP_H
-#define CHESS_BISHOP_H
+#ifndef CHESS_ROOK_H
+#define CHESS_ROOK_H
 
-#include "Pieces.h"
 #include <vector>
+#include "Pieces.h"
 
-class Bishop {
+class Rook {
 public:
-    Bishop();
+    Rook();
 
     bool validMove();
 
@@ -27,9 +27,7 @@ private:
 
     int temp_old_y = pieces.old_y;
     int temp_old_x = pieces.old_x;
-
-    int white = true;
 };
 
 
-#endif //CHESS_BISHOP_H
+#endif //CHESS_ROOK_H

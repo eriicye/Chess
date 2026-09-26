@@ -1,16 +1,12 @@
 //
-// Created by Eric on 10/09/2026.
+// Created by Eric on 21/09/2026.
 //
 
-#include "Bishop.h"
-#include "Pieces.h"
-#include "../constants/Constants.h"
+#include "Rook.h"
 
-#include "SFML/Graphics.hpp"
+Rook::Rook() = default;
 
-Bishop::Bishop() = default;
-
-bool Bishop::validMove() {
+bool Rook::validMove() {
     checkAllValidMoves();
 
     for (int i = 0; i < valid_moves.size(); i++) {
@@ -22,23 +18,23 @@ bool Bishop::validMove() {
     return false;
 }
 
-void Bishop::checkAllValidMoves() {
+void Rook::checkAllValidMoves() {
     valid_moves.clear();
 
-    // top right
-    checkDifferentDirections(1, -1);
+    // right
+    checkDifferentDirections(1, 0);
 
-    // top left
-    checkDifferentDirections(-1, -1);
+    // up
+    checkDifferentDirections(0, -1);
 
-    // bottom right
-    checkDifferentDirections(1, 1);
+    // down
+    checkDifferentDirections(0, 1);
 
-    // bottom left
-    checkDifferentDirections(-1, 1);
+    // left
+    checkDifferentDirections(-1, 0);
 }
 
-void Bishop::checkDifferentDirections(int x, int y) {
+void Rook::checkDifferentDirections(int x, int y) {
     resetTemp();
 
     // white
@@ -78,16 +74,18 @@ void Bishop::checkDifferentDirections(int x, int y) {
     }
 }
 
-void Bishop::resetTemp() {
+void Rook::resetTemp() {
     temp_old_y = pieces.old_y;
     temp_old_x = pieces.old_x;
 }
 
-void Bishop::updateTempValues(int x_amount, int y_amount) {
+void Rook::updateTempValues(int x_amount, int y_amount) {
     temp_old_x += x_amount;
     temp_old_y += y_amount;
 }
 
-void Bishop::addToValidMoves(int x_amount, int y_amount) {
+void Rook::addToValidMoves(int x_amount, int y_amount) {
     valid_moves.emplace_back(temp_old_x + x_amount, temp_old_y + y_amount);
 }
+
+
