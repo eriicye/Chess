@@ -125,6 +125,7 @@ void Pieces::movePiece(sf::RenderWindow &window) {
         }
     }
 
+    // rook
     if (move(4, -4)) {
         if (rook.validMove() == false) {
 

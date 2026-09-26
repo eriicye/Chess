@@ -44,26 +44,36 @@ void Bishop::checkDifferentDirections(int x, int y) {
     // white
     if (pieces.board[pieces.old_y][pieces.old_x] > 0) {
         while (pieces.board[temp_old_y + y][temp_old_x + x] == 8 || pieces.board[temp_old_y + y][temp_old_x + x] < 0) {
+            if (pieces.board[temp_old_y + y][temp_old_x + x] < 0) {
+                addToValidMoves(x, y);
+                break;
+            }
+
             if (temp_old_x + x <= 8 && temp_old_y + y <= 8) {
                 updateTempValues(x, y);
             }
 
             else break;
 
-            addToValidMoves();
+            addToValidMoves(0, 0);
         }
     }
 
     // black
     else {
         while (pieces.board[temp_old_y + y][temp_old_x + x] == 8 || pieces.board[temp_old_y + y][temp_old_x + x] > 0) {
+            if (pieces.board[temp_old_y + y][temp_old_x + x] != 8 && pieces.board[temp_old_y + y][temp_old_x + x]) {
+                addToValidMoves(x, y);
+                break;
+            }
+
             if (temp_old_x + x <= 8 && temp_old_y + y <= 8) {
                 updateTempValues(x, y);
             }
 
             else break;
 
-            addToValidMoves();
+            addToValidMoves(0, 0);
         }
     }
 }
@@ -73,11 +83,11 @@ void Bishop::resetTemp() {
     temp_old_x = pieces.old_x;
 }
 
-void Bishop::updateTempValues(int xAmount, int yAmount) {
-    temp_old_x += xAmount;
-    temp_old_y += yAmount;
+void Bishop::updateTempValues(int x_amount, int y_amount) {
+    temp_old_x += x_amount;
+    temp_old_y += y_amount;
 }
 
-void Bishop::addToValidMoves() {
-    valid_moves.emplace_back(temp_old_x, temp_old_y);
+void Bishop::addToValidMoves(int x_amount, int y_amount) {
+    valid_moves.emplace_back(temp_old_x + x_amount, temp_old_y + y_amount);
 }

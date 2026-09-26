@@ -18,8 +18,8 @@ private:
     void checkAllValidMoves();
 
     void resetTemp();
-    void updateTempValues(int xAmount, int yAmount);
-    void addToValidMoves();
+    void updateTempValues(int x_amount, int y_amount);
+    void addToValidMoves(int x_amount, int y_amount);
     void checkDifferentDirections(int x, int y);
 
 private:
@@ -27,6 +27,8 @@ private:
 
     int temp_old_y = pieces.old_y;
     int temp_old_x = pieces.old_x;
+
+    int white = true;
 };
 
 
