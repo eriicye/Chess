@@ -24,7 +24,9 @@ add_executable(Chess src/main/main.cpp
         src/board/Bishop.cpp
         src/board/Bishop.h
         src/board/Rook.cpp
-        src/board/Rook.h)
+        src/board/Rook.h
+        src/board/Queen.cpp
+        src/board/Queen.h)
 
 target_link_libraries(Chess PRIVATE
         SFML::Graphics
