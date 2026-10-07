@@ -8,12 +8,14 @@
 #include "Knight.h"
 #include "Bishop.h"
 #include "Rook.h"
+#include "Queen.h"
 
 Pieces pieces;
 Pawn pawn;
 Knight knight;
 Bishop bishop;
 Rook rook;
+Queen queen;
 
 Pieces::Pieces() {
     loadPieces();
@@ -128,6 +130,16 @@ void Pieces::movePiece(sf::RenderWindow &window) {
     // rook
     if (move(4, -4)) {
         if (rook.validMove() == false) {
+
+        }
+
+        else {
+            validMove();
+        }
+    }
+
+    if (move(1, -1)) {
+        if (queen.validMove() == false) {
 
         }
 
